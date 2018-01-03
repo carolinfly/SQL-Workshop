@@ -1,0 +1,32 @@
+## multiple input rows -> a single output row: 
+## ie, min, max, avg, count and etc.
+
+# check all employees' information
+select * from emp;
+
+# maximum salary among all employees
+select max(sal) as max_sal
+ from emp;
+ 
+# minimum salary among all employees
+select min(sal) as min_sal
+ from emp;
+
+# total amount that gives to employees
+select sum(sal) as sum_sal
+ from emp;
+ 
+# the amount we pay to the manager who earns the most salary
+select max(sal) from emp
+where job='MANAGER';
+
+select max(sal) from emp # when taking max, only consider the records that meet the where clause requirement
+where lower(job) like '%manager%';
+
+# average salary among all employees
+select avg(sal) as avg_sal from emp;
+
+# how many employees are there in the employee table?
+select count(ename) as count from emp;
+
+select count(*) as count from emp;
