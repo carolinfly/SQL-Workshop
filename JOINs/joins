@@ -1,0 +1,64 @@
+select *
+	from dept;
+
+select deptno
+	from dept
+		where loc='CHICAGO';
+
+## connect two tables with sub-query
+select * 
+	from emp
+		where deptno=(select deptno
+                  	from dept
+              	    	where loc='CHICAGO');	
+
+## find all employees who work in Dallas
+select * 
+	from emp, dept
+		where emp.deptno = dept.deptno 
+					# not showing all locations, only show the matching obs (exclude Boston because no employees work at deptno=40)
+       
+select ename, job, sal, loc
+	from (select*
+      		from emp, dept
+      			where emp.deptno=dept.deptno)
+		where loc='DALLAS'
+              
+select *
+  from emp, dept
+    where emp.deptno=dept.deptno
+          and loc='DALLAS'
+          
+select ename, job, sal
+  from emp, dept
+    where emp.deptno=dept.deptno
+          and dept.loc='DALLAS'        # resolve conflicts in different tables    
+              
+select emp.ename, emp.job, emp.sal # emp. could be omitted because the three columns only belong to emp table; if a column is conflicting (exists in both tables), need to specify the table
+  from emp, dept
+    where emp.deptno=dept.deptno
+          and dept.loc='DALLAS'                 
+
+select e.ename as first_name, job, sal, e.deptno   # must specify table for deptno
+  from emp e, dept d
+    where e.deptno=d.deptno    # must use d and e
+          and d.loc='DALLAS'   
+
+select e.ename as first_name, job, sal, e.deptno   
+  from (select * from emp) e, dept d     # the code in the parenthesis will be executed first, and then pass to from; the results from sub-query will be treated as a table
+    where e.deptno=d.deptno   
+          and d.loc='DALLAS'      # the results do not change
+
+select e.ename as first_name, job, sal, e.deptno   
+  from (select * from emp) e, (select * from dept) d
+    where e.deptno=d.deptno   
+          and d.loc='DALLAS'  
+
+## sub-queries allow flexibility    
+          
+          
+          
+          
+          
+          
+          
