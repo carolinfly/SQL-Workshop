@@ -29,4 +29,30 @@ select avg(sal) as avg_sal from emp;
 # how many employees are there in the employee table?
 select count(ename) as count from emp;
 
+# how many records are there in emp table?
 select count(*) as count from emp;
+
+# only count in non-empty cells
+select count(comm) from emp;
+
+# Compare computed average salary with native salary
+select sum(sal)/count(*) as computed_avg, avg(sal) as native_avg
+from emp;
+
+# other computations
+select sum(sal) + avg(sal) as computed
+from emp;
+
+# statistical anlysis of salary (a column)
+select sum(sal) as sum, avg(sal) as avg, max(sal) as avg, max(sal) as max, count(*) as count
+from emp;
+
+# average salary per job title
+select job, avg(sal) as avg_sal
+from emp
+group by job
+
+# average salary of salesmen
+select avg(sal) as avg_sal
+from emp
+where job='SALESMAN'
