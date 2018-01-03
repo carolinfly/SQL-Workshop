@@ -1,1 +1,1 @@
-# WeKa-Lab
+# SQL Workshop
