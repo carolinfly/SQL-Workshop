@@ -1,0 +1,158 @@
+CREATE TABLE products
+( product_id int NOT NULL,
+  product_name char(50) NOT NULL,
+  category_id int,
+  CONSTRAINT products_pk PRIMARY KEY (product_id)
+);
+
+INSERT INTO products
+(product_id, product_name, category_id)
+VALUES
+(1,'Pear',50);
+
+INSERT INTO products
+(product_id, product_name, category_id)
+VALUES
+(2,'Banana',50);
+
+INSERT INTO products
+(product_id, product_name, category_id)
+VALUES
+(3,'Orange',50);
+
+INSERT INTO products
+(product_id, product_name, category_id)
+VALUES
+(4,'Apple',50);
+
+INSERT INTO products
+(product_id, product_name, category_id)
+VALUES
+(5,'Bread',75);
+
+INSERT INTO products
+(product_id, product_name, category_id)
+VALUES
+(6,'Sliced Ham',25);
+
+INSERT INTO products
+(product_id, product_name, category_id)
+VALUES
+(7,'Kleenex',null);
+
+
+
+## Based on the products table populated with the above data, count the number of products that have a category_id of 50.
+
+select count(product_id) as total 
+from products
+where category_id=50
+
+select count(1) as total_1
+from products
+where category_id=50
+
+CREATE TABLE suppliers
+( supplier_id int NOT NULL,
+  supplier_name char(50) NOT NULL,
+  city char(50),
+  state char(50),
+  CONSTRAINT suppliers_pk PRIMARY KEY (supplier_id)
+);
+
+INSERT INTO suppliers
+(supplier_id, supplier_name, city, state)
+VALUES
+(100, 'Microsoft', 'Redmond', 'Washington');
+
+INSERT INTO suppliers
+(supplier_id, supplier_name, city, state)
+VALUES
+(200, 'Google', 'Mountain View', 'California');
+
+INSERT INTO suppliers
+(supplier_id, supplier_name, city, state)
+VALUES
+(300, 'Oracle', 'Redwood City', 'California');
+
+INSERT INTO suppliers
+(supplier_id, supplier_name, city, state)
+VALUES
+(400, 'Kimberly-Clark', 'Irving', 'Texas');
+
+INSERT INTO suppliers
+(supplier_id, supplier_name, city, state)
+VALUES
+(500, 'Tyson Foods', 'Springdale', 'Arkansas');
+
+INSERT INTO suppliers
+(supplier_id, supplier_name, city, state)
+VALUES
+(600, 'SC Johnson', 'Racine', 'Wisconsin');
+
+INSERT INTO suppliers
+(supplier_id, supplier_name, city, state)
+VALUES
+(700, 'Dole Food Company', 'Westlake Village', 'California');
+
+INSERT INTO suppliers
+(supplier_id, supplier_name, city, state)
+VALUES
+(800, 'Flowers Foods', 'Thomasville', 'Georgia');
+
+INSERT INTO suppliers
+(supplier_id, supplier_name, city, state)
+VALUES
+(900, 'Electronic Arts', 'Redwood City', 'California');
+
+
+## Based on the suppliers table populated with the above data, count the number of distinct city values in the suppliers table:
+
+
+select count(distinct city) as distinct_city
+from suppliers
+
+
+CREATE TABLE orders
+( order_id int NOT NULL,
+  customer_id int,
+  order_date datetime,
+  CONSTRAINT orders_pk PRIMARY KEY (order_id)
+);
+
+INSERT INTO orders
+(order_id, customer_id, order_date)
+VALUES
+(1,7000,'2016/04/18');
+
+INSERT INTO orders
+(order_id, customer_id, order_date)
+VALUES
+(2,5000,'2016/04/18');
+
+INSERT INTO orders
+(order_id, customer_id, order_date)
+VALUES
+(3,8000,'2016/04/19');
+
+INSERT INTO orders
+(order_id, customer_id, order_date)
+VALUES
+(4,4000,'2016/04/20');
+
+INSERT INTO orders
+(order_id, customer_id, order_date)
+VALUES
+(5,null,'2016/05/01');
+
+
+# Based on the orders table populated with the above data, count the number of orders for each order_date in the orders table:
+
+
+SELECT order_date, COUNT(*) AS total
+FROM orders
+GROUP BY order_date;
+
+SELECT order_date, COUNT(1) AS total
+FROM orders
+GROUP BY order_date;
