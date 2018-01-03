@@ -55,8 +55,16 @@ select e.ename as first_name, job, sal, e.deptno
           and d.loc='DALLAS'  
 
 ## sub-queries allow flexibility    
-          
-          
+select e.ename as first_name, job, sal, e.deptno   
+  from (select * from emp where job in ('MANAGER', 'CLERK')) e, (select * from dept) d
+    where e.deptno=d.deptno   
+          and d.loc='DALLAS'        
+
+## still want the same result, however, do not want d.loc='DALLAS' in the outer query
+select e.ename as first_name, job, sal, e.deptno   
+  from (select * from emp where job in ('MANAGER', 'CLERK')) e, (select * from dept where loc='DALLAS') d
+    where e.deptno=d.deptno   
+             
           
           
           
