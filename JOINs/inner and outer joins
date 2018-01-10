@@ -1,0 +1,22 @@
+select *
+from emp, dept
+where emp.deptno=dept.deptno
+
+# exact the same thing as the above, more flexible
+select *
+from emp INNER JOIN dept
+ON emp.deptno=dept.deptno # two deptno columns in the output
+
+# RIGHT JOIN: gives all the data in the right table - dept
+select *
+from emp RIGHT JOIN dept
+ON emp.deptno=dept.deptno # can have nulls for emp columns
+
+# LEFT JOIN: gives all the data in the left table - emp
+select *
+from emp LEFT JOIN dept
+ON emp.deptno=dept.deptno 
+
+select *
+from dept LEFT JOIN emp
+ON emp.deptno=dept.deptno 
