@@ -3,6 +3,10 @@ select *
 from emp, dept
 where emp.deptno=dept.deptno
 
+select *
+from (select * from emp) e, (select * from dept) d # performance cost: slower than refering to tables directly; more flexibility
+where e.deptno=d.deptno
+
 # exact the same thing as the above, more flexible
 select *
 from emp INNER JOIN dept
@@ -34,12 +38,18 @@ select *
     where emp.deptno = dept.deptno(+)
 #########################################################################
 
+# the full outer join
+select *
+from emp FULL OUTER JOIN dept
+ON emp.deptno = dept.deptno
 
+select *
+from (select * from emp) e FULL OUTER JOIN (select * from dept) d
+ON e.deptno = d.deptno
 
-
-
-
-
+select *
+from (select * from emp where job='SALESMAN') e FULL OUTER JOIN (select * from dept) d 
+ON e.deptno=d.deptno
 
 
 
