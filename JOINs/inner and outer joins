@@ -1,3 +1,4 @@
+# inner join using where clause
 select *
 from emp, dept
 where emp.deptno=dept.deptno
@@ -18,5 +19,37 @@ from emp LEFT JOIN dept
 ON emp.deptno=dept.deptno 
 
 select *
-from dept LEFT JOIN emp
+from dept LEFT JOIN emp # LEFT OUTER JOIN RIGHT, same thing
 ON emp.deptno=dept.deptno 
+
+############################################## OPTIONAL#################
+# outer join operator: want all data in dept regardless whether they meet the matching condition
+select *
+  from emp, dept
+    where emp.deptno(+) = dept.deptno # right outer join
+
+# left join
+select *
+  from emp, dept
+    where emp.deptno = dept.deptno(+)
+#########################################################################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
