@@ -1,0 +1,77 @@
+################
+## Subqueries ##
+################
+
+select *
+from dept
+where deptno=30
+
+# gives the same result as the above
+select *
+from dept
+where deptno = (select deptno from dept where deptno=30) # a particular value
+
+select *
+from dept
+where deptno < (select deptno from dept where deptno=30) # a particular value
+
+select *
+from dept
+where deptno < (select deptno from dept where deptno=30)
+and dname='ACCOUNTING'
+
+select *
+from (select * from dept)
+
+# give all employees who work at Chicago office
+select *
+from emp
+where deptno = (select deptno from dept where LOC='CHICAGO') # cannot be multiple deptno values in where clause
+
+select deptno 
+from dept
+where deptno in (10, 20)
+
+# use in clause 
+select * 
+  from emp 
+    where deptno in (select deptno 
+                        from dept
+                           where deptno in (10, 20)) 
+
+select job, ename
+from (select * from emp)
+
+select job, ename, (select job from emp where ename = 'KING')
+from (select * from emp)
+
+# print hello for every record in emp
+select 'Hello' from emp
+
+select job, ename, (select * from dual as TMP) # a single record
+from emp
+
+select job, ename, (select 'Hello there' from dual) 
+from emp
+
+select job, ename, (select 'Hello there' from dual) 
+from emp
+where job = (select job from emp where job = 'PRESIDENT')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
