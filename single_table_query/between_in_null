@@ -1,0 +1,66 @@
+# identify employees who works at Dallas and Chicago office
+select ename, hiredate
+from emp
+where deptno IN (select deptno
+                    from dept
+                       where loc= 'DALLAS' OR loc='CHICAGO') # 20, 30
+                       
+# in clause
+select ename, hiredate
+from emp
+where ename IN ('FORD', 'SMITH', 'ALLEN', 'WARD', 'MARTIN') # cannot use double quotes
+
+# not in - reject particular employees
+select ename, hiredate
+from emp
+where ename NOT IN ('FORD', 'SMITH', 'ALLEN', 'WARD', 'MARTIN') # cannot use double quotes
+
+
+
+# between operator - date
+select *
+from emp
+where hiredate BETWEEN '05/01/1981' AND '12/09/1982' # include both ends
+
+# between operator - number
+select *
+from emp
+where sal BETWEEN 1250 AND 1300 # inclusive of both ends
+
+# NOT between operator - number
+select *
+from emp
+where sal NOT BETWEEN 950 AND 3000 # output only contains <950 and >3000 (not inclusive)
+
+
+
+# IS NULL - identify empty slots
+select *
+from emp
+where comm IS NULL
+
+# IS NOT NULL
+select *
+from emp
+where comm IS NOT NULL
+
+# identify employees who don't have managers
+select ename
+from emp
+where MGR IS NULL
+
+# return employees who don't make any commission and have a salary greater than 1100 but less than 5000. Exclude those employees that have a salary equal to 3000.
+select ename
+from (select *
+from emp
+where comm IS NULL and sal BETWEEN 1100 and 5000)
+where sal !=3000
+
+
+
+
+
+
+
+
+
