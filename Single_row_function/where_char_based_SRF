@@ -1,0 +1,60 @@
+select * 
+from emp
+where lower(ename)='martin';
+
+select lower(ename) from emp;
+
+select * 
+from emp
+where job=upper('president');
+
+# capitalize the initial letter of every word 
+select initcap('hello I am Carol') as Intro
+from dual
+
+# length - including space, only accept one argument
+select length('hello I am') as length
+from dual
+
+select ename, length(ename) as length
+from emp
+
+select ename, length(ename) as length
+from emp
+where length(ename)=6 # cannot put length
+
+# subsr
+select substr('hello ', 2, 3) as substr
+from dual # ell
+
+select 'hello b' as word, substr('hello b', 2, 6) as substr
+from dual # ello b
+
+select 'hello bjkerjwqk' as word, substr('hello bjkerjwqk', 2) as substr # all the way until the end from the start position
+from dual # ello bjkerjwqk
+
+select 'hello bjkerjwqk' as word, length(substr('hello bjkerjwqk', 2, 10)) as len
+from dual 
+
+# LPAD - add characters to the left of the given string, 2nd argument is the total width after adding the padding
+select LPAD('Day', 6, '$') as word
+from dual # $$$Day
+
+# RPAD
+select RPAD('Day', 7, '$') as word
+from dual # Day$$$$
+
+# LTRIM
+select LTRIM('hhhhhellohhh', 'h') as word
+from dual # ellohhh
+
+# RTRIM
+select RTRIM('hhhellohhh', 'h') as word
+from dual # hhhello
+
+
+
+
+
+
+
