@@ -1,0 +1,56 @@
+# make column names meaningful
+select ename employee_name, sal salary, comm commision
+from emp
+
+select ename "employee name", sal salary, comm commision -- use double quotes for alias, ow single quote
+from emp
+
+select ename "employee NAME", sal salary, comm commision -- print exactly as in quote
+from emp
+
+select ename as "employee NAME", sal as salary, comm as commision -- print exactly as in quote
+from emp
+
+# concatenation: combine attributes into a sentence
+select 'My name is ' ||ename|| '.' as "concatenated value"-- My name is BLAKE.
+from emp
+where job='MANAGER'
+
+select ename|| ' makes $' || sal || ' per month' as "employee income" --alias cannot be too long
+from emp
+
+# order by - sort data by a specific column
+select ename, sal
+from emp
+order by ename -- A, B, ...
+
+select *
+from emp
+order by ename
+
+select *
+from emp
+order by sal -- lowest sal on the top row in ascending order
+
+select *
+from emp
+order by sal ASC --default
+
+select *
+from emp
+order by sal DESC -- largest to smallest (change the default)
+
+select deptno, ename, sal
+from emp
+order by deptno, sal
+
+
+
+
+
+
+
+
+
+
+
