@@ -1,0 +1,70 @@
+###################
+## single row functions on numeric and date data types
+###################
+
+# round
+select round(100.555, 2) from dual # 100.56
+select round(100.578, 2) from dual # 100.58
+
+select round(100.578) from dual # 101 - no precision, only gives awhole number
+
+# trunc(number)
+select trunc(100.87884848484) from dual # 100, not round up
+
+select trunc(100.87884848484, 3) from dual # 100.878, keep 3 digits after the decimal point
+
+select trunc(sal, 3) from emp
+
+# sysdate - not require any arguments
+select sysdate from dual # 01/15/2018
+
+# systimestamp - not require any arguments
+select systimestamp from dual # 15-JAN-18 12.25.06.774310 AM +00:00
+
+# add_months
+select add_months('11/18/2017', 3) # treat date as string
+from dual # 02/18/2018
+
+select add_months('11/18/2017', -3) # mm/dd/yyyy
+from dual # 08/18/2017
+
+select add_months(sysdate, -3)
+from dual
+
+# months_between('date1', 'date2')
+select months_between('12/1/2012', '1/1/2012')
+from dual # 11
+
+select months_between('12/15/2012', '12/4/2013') # 1st minus 2nd
+from dual # -11.645161290322580645161290322580645161 - days are fractioned
+
+select months_between('12/4/2013', '12/15/2012')
+from dual # 11.6451...
+
+# trunc(date, 'month/year')
+select trunc(systimestamp)
+from dual # 01/15/2018
+
+select trunc(systimestamp, 'year')
+from dual # 01/01/2018 - give the first date of the year
+
+select trunc(systimestamp, 'month')
+from dual # 01/01/2018 - give the first date of the month
+
+select ename, hiredate, trunc(hiredate, 'month') 
+from emp
+
+# use trunc function in where clause - single row function; Note: grouping functions (ie, max) are not allowed in where clause
+select ename, hiredate, trunc(hiredate, 'month') 
+from emp
+where trunc(hiredate, 'year') = '01/01/1982' # want the employees who were hired in 1982
+
+
+
+
+
+
+
+
+
+
