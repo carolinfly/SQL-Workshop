@@ -1,1 +1,56 @@
-TBD
+# find average salary per job title
+select job, avg(sal)
+from emp
+group by job
+
+select AVG(SAL)
+from emp
+where job='SALESMAN'
+
+# unique values of job
+select job
+from emp
+group by job
+
+select distinct job
+from emp
+
+# count the number of rows belonging to each job category
+select count(*), job
+from emp
+group by job
+
+select min(SAL), job
+from emp
+group by job
+
+# find the job role that is only filled by two employees 
+select job
+from (select job, count(*) as cnt
+from emp
+group by job)
+where cnt=2
+
+# Note: cannot use group functions (ie, count) in the where clause
+
+# Having - filter using group functions
+select job
+from emp
+group by job
+having count(*)=2
+
+# find the departments that have more than 3 employees working there
+select deptno
+from emp
+group by deptno
+having count(*)>3
+
+###############
+## structure 
+###############
+select
+from
+where
+group by
+having
+order by
