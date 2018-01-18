@@ -1,0 +1,23 @@
+## Format date
+# TO_CHAR -- convert date or numeric value to character
+select sysdate from dual --01/18/2018
+
+select to_char(sysdate, 'dd-mm-yy') from dual --18-01-18
+
+select to_char(sysdate, 'mm-dd-yyyy') from dual --01-18-2018 (convert slash to dash)
+
+select to_char(sysdate, 'ddth "of" Month, yyyy') from dual --18th of January , 2018 (capital M; use double quotes since it's not a default format)
+
+
+## Format number
+select to_char(7980.67, '$9,999.99') from dual --$7,980.67
+
+select sal, to_char(sal, '$9,999.99') from emp --observe data and capture all possibilities
+
+
+# TO_DATE -- take a string and convert into actual date, the formate should match the string
+select to_date('2012-08-27', 'yyyy-mm-dd') from dual --08/27/2012
+
+select add_months(to_date('2012-08-27', 'yyyy-mm-dd'), 2) from dual --10/27/2012 (the 1st argument of add_months is an actual date)
+
+select to_date('3 of June, 2012', 'dd "of" Month, yyyy') from dual --06/03/2012
