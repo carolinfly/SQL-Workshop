@@ -4,4 +4,7 @@
  
 ### Some useful resources 
 * Date format conversion
-![](./date_format_v2.png) 
+![](./Pics/date_format_v2.png) 
+
+* Number format conversion
+![](./Pics/number_formatting.png) 
