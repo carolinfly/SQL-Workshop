@@ -1,0 +1,70 @@
+select *
+from emp e INNER JOIN dept d
+ON e.deptno = d.deptno;
+
+select *
+from emp e LEFT OUTER JOIN dept d
+ON e.deptno = d.deptno;
+
+select * -- attach the corresponding columns from d, but select the wanted records from e
+from (select * from emp where job='SALESMAN') e LEFT OUTER JOIN (select * from dept) d
+ON e.deptno = d.deptno;
+
+select *
+from (select * from dept) d LEFT OUTER JOIN (select * from emp where job='SALESMAN') e
+ON e.deptno = d.deptno;
+
+select empno, ename, job, mgr, hiredate, sal, comm, e.deptno as deptno, d.deptno as deptno, dname, loc
+from (select * from dept) d LEFT OUTER JOIN (select * from emp where job='SALESMAN') e
+ON e.deptno = d.deptno;
+
+select e.*, d.*
+from (select * from dept) d LEFT OUTER JOIN (select * from emp where job='SALESMAN') e
+ON e.deptno = d.deptno;
+
+
+# EXISTS -- condition, use with a subquery; not efficient to use because subquery will be runned for each row in the outer query
+select *
+from emp
+where EXISTS (select 'random' from dual); -- everything is returned from emp as long as something exists in the subquery
+
+# NOT EXISTS
+select *
+from emp
+where NOT EXISTS (select 'random' from dual); -- no data found, where clause does not hold because there is somthing returned from the s -- ubquery
+
+select *
+from emp
+where EXISTS (select NULL from dual); -- everything is returned from emp because subquery returns "-" which is still some data
+
+select *
+from emp
+where EXISTS (select * from emp where job='TEACHER'); -- nothing is returned because we don't have jobs of teacher
+
+select *
+from emp
+where EXISTS (select * from emp where job='TEACHER'); -- get all the data
+
+# correlated subquery -- the inner query refers to the outer query; cannot access columns in the nested portion, but the inner query can refer to columns with alias of the outer query
+select d.*
+from dept d
+where EXISTS (select * from emp where d.deptno=emp.deptno); -- join, correlate records in the outer query with the innier query
+
+select d.*
+from dept d
+where NOT EXISTS (select * from emp where d.deptno=emp.deptno);
+
+select d.*
+from dept d
+where NOT EXISTS (select * from emp where d.deptno=emp.deptno)
+AND loc='CHICAGO'; -- nothing is returned because the above scripts returns a single record, however, the location of the record is not CHICAGO but BOSTON
+
+select d.*
+from dept d
+where NOT EXISTS (select * from emp where d.deptno=emp.deptno)
+AND loc='BOSTON'; -- works fine, return the record with location of BOSTON
+
+select d.*
+from dept d
+where NOT EXISTS (select * from emp where d.deptno=emp.deptno)
+OR loc='CHICAGO'; -- return both, either not exists or OR condition needs to be true, check the two condition for each record
