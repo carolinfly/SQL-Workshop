@@ -48,7 +48,7 @@ from (select * from emp)
 # print hello for every record in emp
 select 'Hello' from emp
 
-select job, ename, (select * from dual as TMP) # a single record
+select job, ename, (select * from dual) as TMP --- a single record
 from emp
 
 select job, ename, (select 'Hello there' from dual) 
