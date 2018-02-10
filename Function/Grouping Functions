@@ -20,7 +20,7 @@ select sum(sal) as sum_sal
 select max(sal) from emp
 where job='MANAGER';
 
-select max(sal) from emp # when taking max, only consider the records that meet the where clause requirement
+select max(sal) from emp --- when taking max, only consider the records that meet the where clause requirement
 where lower(job) like '%manager%';
 
 # average salary among all employees
