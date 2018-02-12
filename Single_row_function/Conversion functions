@@ -17,7 +17,7 @@ select sal, to_char(sal, '$9,999.99') from emp --observe data first, and the for
 
 
 # TO_DATE -- take a string and convert into actual date, the format should match the string
-select to_date('2012-08-27', 'yyyy-mm-dd') from dual --08/27/2012
+select to_date('2012-08-27', 'yyyy-mm-dd') from dual --08/27/2012; not in form of yyyy-mm-dd
 
 select add_months(to_date('2012-08-27', 'yyyy-mm-dd'), 2) from dual --10/27/2012 (the 1st argument of add_months is an actual date)
 
