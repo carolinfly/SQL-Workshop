@@ -12,7 +12,7 @@ select to_char(sysdate, 'ddth "of" Month, yyyy') from dual --18th of January , 2
 ## Format number
 select to_char(7980.67, '$9,999.99') from dual --$7,980.67
 
-select sal, to_char(sal, '$9,999.99') from emp --observe data and capture all possibilities
+select sal, to_char(sal, '$9,999.99') from emp --observe data first, and the format assigned should capture all possibilities
 
 
 # TO_DATE -- take a string and convert into actual date, the formate should match the string
