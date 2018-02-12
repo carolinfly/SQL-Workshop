@@ -30,7 +30,7 @@ order by ename
 
 select *
 from emp
-order by sal -- lowest sal on the top row in ascending order
+order by sal -- the lowest sal on the top row in ascending order
 
 select *
 from emp
