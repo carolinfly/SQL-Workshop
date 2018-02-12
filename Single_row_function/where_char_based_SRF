@@ -48,6 +48,9 @@ from dual # Day$$$$
 select LTRIM('hhhhhellohhh', 'h') as word
 from dual # ellohhh
 
+select LTRIM('hhhhhellohhh ', 'h') as word, length(LTRIM('hhhhhellohhh ', 'h')) ---- length = 8, including space
+from dual 
+
 # RTRIM
 select RTRIM('hhhellohhh', 'h') as word
 from dual # hhhello
