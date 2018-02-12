@@ -4,7 +4,7 @@ ON e.deptno = d.deptno;
 
 select *
 from emp e LEFT OUTER JOIN dept d
-ON e.deptno = d.deptno;
+ON e.deptno = d.deptno; --- no deptno=40 because it does not have corresponding records in emp table
 
 select * -- attach the corresponding columns from d, but select the wanted records from e
 from (select * from emp where job='SALESMAN') e LEFT OUTER JOIN (select * from dept) d
