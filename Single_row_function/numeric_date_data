@@ -55,7 +55,7 @@ from dual # 01/01/2018 - give the first date of the year
 select trunc(systimestamp, 'month')
 from dual # 01/01/2018 - give the first date of the month
 
-select ename, hiredate, trunc(hiredate, 'month') 
+select ename, hiredate, trunc(hiredate, 'month') --- apply to each row
 from emp
 
 # use trunc function in where clause - single row function; Note: grouping functions (ie, max) are not allowed in where clause
