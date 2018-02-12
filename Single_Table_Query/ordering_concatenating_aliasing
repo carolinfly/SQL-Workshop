@@ -1,14 +1,14 @@
 # make column names meaningful
-select ename employee_name, sal salary, comm commision
+select ename employee_name, sal salary, comm commission
 from emp
 
-select ename "employee name", sal salary, comm commision -- use double quotes for alias, ow single quote
+select ename "employee name", sal salary, comm commission -- use double quotes for alias, otherwise, use single quote
 from emp
 
-select ename "employee NAME", sal salary, comm commision -- print exactly as in quote
+select ename "employee NAME", sal salary, comm commission -- print exactly as in quote
 from emp
 
-select ename as "employee NAME", sal as salary, comm as commision -- print exactly as in quote
+select ename as "employee NAME", sal as salary, comm as commission -- print exactly as in quote
 from emp
 
 # concatenation: combine attributes into a sentence
