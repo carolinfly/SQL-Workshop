@@ -31,7 +31,7 @@ where EXISTS (select 'random' from dual); -- everything is returned from emp as 
 # NOT EXISTS
 select *
 from emp
-where NOT EXISTS (select 'random' from dual); -- no data found, where clause does not hold because there is somthing returned from the s -- ubquery
+where NOT EXISTS (select 'random' from dual); -- no data found, where clause does not hold because there is something returned from the subquery
 
 select *
 from emp
