@@ -42,7 +42,7 @@ where comm IS NULL --- "-"
 # IS NOT NULL
 select *
 from emp
-where comm IS NOT NULL
+where comm IS NOT NULL --- comm = 0 does not mean NULL
 
 # identify employees who don't have managers
 select ename
