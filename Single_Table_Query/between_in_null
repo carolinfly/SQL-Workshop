@@ -37,7 +37,7 @@ where sal NOT BETWEEN 950 AND 3000 # output only contains <950 and >3000 (not in
 # IS NULL - identify empty slots
 select *
 from emp
-where comm IS NULL
+where comm IS NULL --- "-"
 
 # IS NOT NULL
 select *
