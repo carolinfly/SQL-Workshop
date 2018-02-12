@@ -8,7 +8,7 @@ where deptno IN (select deptno
 # in clause
 select ename, hiredate
 from emp
-where ename IN ('FORD', 'SMITH', 'ALLEN', 'WARD', 'MARTIN') # cannot use double quotes
+where ename IN ('FORD', 'SMITH', 'ALLEN', 'WARD', 'MARTIN') --- cannot use double quotes
 
 # not in - reject particular employees
 select ename, hiredate
@@ -25,7 +25,7 @@ where hiredate BETWEEN '05/01/1981' AND '12/09/1982' # include both ends
 # between operator - number
 select *
 from emp
-where sal BETWEEN 1250 AND 1300 # inclusive of both ends
+where sal BETWEEN 1250 AND 1300 --- inclusive of both ends, 1250<= . <= 1300
 
 # NOT between operator - number
 select *
