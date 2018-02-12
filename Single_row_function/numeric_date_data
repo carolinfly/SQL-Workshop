@@ -10,6 +10,7 @@ select round(100.578) from dual # 101 - no precision, only gives a whole number
 
 # trunc(number)
 select trunc(100.87884848484) from dual # 100, not round up
+select round(100.87884848484) from dual ---101
 
 select trunc(100.87884848484, 3) from dual # 100.878, keep 3 digits after the decimal point
 
