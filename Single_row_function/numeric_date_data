@@ -14,6 +14,9 @@ select round(100.87884848484) from dual ---101
 
 select trunc(100.87884848484, 3) from dual # 100.878, keep 3 digits after the decimal point
 
+select trunc(100.87884848484, 3) as trunc, round(100.87884848484, 3) as round ----100.878   100.879
+from dual
+
 select trunc(sal, 3) from emp
 
 # sysdate - not require any arguments
