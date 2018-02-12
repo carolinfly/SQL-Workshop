@@ -59,9 +59,11 @@ select ename, hiredate, trunc(hiredate, 'month') --- apply to each row
 from emp
 
 # use trunc function in where clause - single row function; Note: grouping functions (ie, max) are not allowed in where clause
+--- Find the employees who were hired in 1982
+
 select ename, hiredate, trunc(hiredate, 'month') 
 from emp
-where trunc(hiredate, 'year') = '01/01/1982' # want the employees who were hired in 1982
+where trunc(hiredate, 'year') = '01/01/1982' 
 
 
 
