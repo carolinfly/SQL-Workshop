@@ -8,3 +8,6 @@
 
 * Number format conversion
 ![](./Pics/number_formatting.png) 
+
+### Datasets
+ * [OpenAQ Global Air Pollution Measurements](https://www.kaggle.com/open-aq/openaq?utm_medium=email&utm_source=mailchimp&utm_campaign=sql+scav+hunt) 
