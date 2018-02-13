@@ -43,7 +43,7 @@ where EXISTS (select * from emp where job='TEACHER'); -- nothing is returned bec
 
 select *
 from emp
-where EXISTS (select * from emp where job='TEACHER'); -- get all the data
+where NOT EXISTS (select * from emp where job='TEACHER'); -- get all the data
 
 # correlated subquery -- the inner query refers to the outer query; cannot access columns in the nested portion, but the inner query can refer to columns with alias of the outer query
 select d.*
