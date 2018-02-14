@@ -1,0 +1,59 @@
+# Work with large datasets - BigQuery datasets 
+# use WHERE to make sure I only get the information I am interested in. 
+# dataset - OpenAQ is an open-source project to surface live, real-time air quality data from around the world
+
+import bq_helper 
+
+# create a helper object for our bigquery dataset
+openaq = bq_helper.BigQueryHelper(active_project= "bigquery-public-data", 
+                                       dataset_name = "openaq")
+                                       
+# print a list of all the tables in the openaq dataset
+openaq.list_tables()
+
+# print information on all the columns in the "global_air_quality" table
+# in the openaq dataset
+openaq.table_schema("global_air_quality")
+
+# preview the first couple lines of the "global_air_quality" table
+openaq.head("global_air_quality")
+
+# this query looks in the "global_air_quality" table in the openaq
+# dataset, then gets the value column from every row where 
+# the type column has "job" in it.
+query = """SELECT value
+            FROM `bigquery-public-data.openaq.global_air_quality`
+            WHERE value > 15 """
+
+# check how big this query will be
+openaq.estimate_query_size(query)
+
+# check out the value of value_15 (if the 
+# query is smaller than 1 gig)
+value_15 = openaq.query_to_pandas_safe(query)
+
+# average value for value_15
+value_15.value.mean()
+
+############################################################################################################
+
+# Which countries use a unit other than ppm to measure any type of pollution? 
+# (Hint: to get rows where the value *isn't* something, use "!=")
+query_d1_q1 = """SELECT country
+                 FROM `bigquery-public-data.openaq.global_air_quality`
+                 WHERE unit != "ppm" """
+
+# check how big this query will be
+openaq.estimate_query_size(query_d1_q1)
+
+# Which pollutants have a value of exactly 0?
+query_d1_q2 = """SELECT pollutant
+                 FROM `bigquery-public-data.openaq.global_air_quality`
+                 WHERE value = 0 """
+
+# check how big this query will be
+openaq.estimate_query_size(query_d1_q2)
+
+# save our dataframe as a .csv 
+query_d1_q1.to_csv('query_d1_q1.csv')
+query_d1_q2.to_csv('query_d1_q2.csv')
