@@ -1,0 +1,85 @@
+Dataset: Hacker News
+
+# aggregate function - count(), sum(), avg(); an aggregate function takes in many values and returns one
+SELECT COUNT(ID)
+    FROM `bigquery-public-data.pet_records.pets`
+
+# GROUP BY 
+# takes the name of one or more column and tells SQL that we want to treat rows that have the same value in that column 
+# as a single group when we apply aggregate functions like COUNT().
+
+# how many each type of animal do I have?
+select animal, count(ID) --- one for each distinct animal
+FROM `bigquery-public-data.pet_records.pets`
+group by animal
+
+select name, animal, count(ID) --- Error, because name not pass to group by nor used as an input of an aggregate function
+FROM `bigquery-public-data.pet_records.pets`
+group by animal
+
+# GROUP BY ... HAVING 
+# ignore groups that not meet certain criteria
+
+select animal, count(ID) --- one for each distinct animal
+FROM `bigquery-public-data.pet_records.pets`
+group by animal
+having count(ID)>1
+
+#################################################################################################################################
+
+
+# import package with helper functions 
+import bq_helper
+
+# create a helper object for this dataset
+hacker_news = bq_helper.BigQueryHelper(active_project="bigquery-public-data",
+                                   dataset_name="hacker_news")
+
+# print the first couple rows of the "comments" table
+hacker_news.head("comments")
+
+# query to pass to 
+query = """SELECT parent, COUNT(id)
+            FROM `bigquery-public-data.hacker_news.comments`
+            GROUP BY parent
+            HAVING COUNT(id) > 10
+        """
+popular_stories.head()
+
+#########################################################################################################################
+
+# import package with helper functions 
+import bq_helper
+
+# create a helper object for this dataset
+hacker_news = bq_helper.BigQueryHelper(active_project="bigquery-public-data",
+                                   dataset_name="hacker_news")
+
+# print the first couple rows of the "comments" table
+hacker_news.head("full")
+# the query_to_pandas_safe method will cancel the query if
+# it would use too much of your quota, with the limit set 
+# to 1 GB by default
+popular_stories = hacker_news.query_to_pandas_safe(query)
+
+# query to pass to 
+query = """SELECT type, COUNT(id)
+            FROM `bigquery-public-data.hacker_news.full`
+            GROUP BY type
+        """
+d2_q1 = hacker_news.query_to_pandas_safe(query)
+d2_q1.head()
+
+query = """SELECT deleted, count(id) as count
+            FROM `bigquery-public-data.hacker_news.full`
+            GROUP BY deleted
+        """
+d2_q2 = hacker_news.query_to_pandas_safe(query)
+d2_q2.head()
+
+query = """SELECT deleted, sum(score) as sum
+            FROM `bigquery-public-data.hacker_news.full`
+            GROUP BY deleted
+        """
+d2_q3 = hacker_news.query_to_pandas_safe(query)
+d2_q3.head()
