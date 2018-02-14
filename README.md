@@ -16,6 +16,7 @@
 ### Datasets
  * [OpenAQ Global Air Pollution Measurements](https://www.kaggle.com/open-aq/openaq?utm_medium=email&utm_source=mailchimp&utm_campaign=sql+scav+hunt)
   * [Hacker News](https://www.kaggle.com/hacker-news/hacker-news?utm_medium=email&utm_source=mailchimp&utm_campaign=sql+scav+hunt) 
+  * [US Traffic Fatality Records](https://www.kaggle.com/usdot/nhtsa-traffic-fatalities?utm_medium=email&utm_source=mailchimp&utm_campaign=sql+scav+hunt) 
 
 ### My Kaggle Kernels
   * [Public Kernels](https://www.kaggle.com/carolinfly0218/kernels) 
