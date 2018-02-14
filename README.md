@@ -9,5 +9,11 @@
 * Number format conversion
 ![](./Pics/number_formatting.png) 
 
+## Scavenger Hunt BootCamp
+### Handbook
+ * [Guide](https://www.kaggle.com/rtatman/sql-scavenger-hunt-handbook?utm_medium=email&utm_source=mailchimp&utm_campaign=sql+scav+hunt)
+ 
 ### Datasets
- * [OpenAQ Global Air Pollution Measurements](https://www.kaggle.com/open-aq/openaq?utm_medium=email&utm_source=mailchimp&utm_campaign=sql+scav+hunt) 
+ * [OpenAQ Global Air Pollution Measurements](https://www.kaggle.com/open-aq/openaq?utm_medium=email&utm_source=mailchimp&utm_campaign=sql+scav+hunt)
+  * [Hacker News](https://www.kaggle.com/hacker-news/hacker-news?utm_medium=email&utm_source=mailchimp&utm_campaign=sql+scav+hunt) 
+
