@@ -1,0 +1,91 @@
+@ Link to my Kaggle outputs: 
+
+#############
+## WITH...AS
+#############
+# split code into manageable chunks that I can refer to later in my query
+
+## AS clause - aliasing
+# Advantages: make code easier to read; tidy up data returned by query
+
+SELECT EXTRACT(DAY FROM column_with_timestamp) AS day, data_point_3 AS data
+FROM `bigquery-public-data.imaginary_dataset.imaginary_table`
+
+# WITH...AS
+# common table expression (CTE)
+# CTE is a temporary table returned within the query; and then, I can write query against the new table;
+# Note: CTE only exists inside the queries where I create then; I cannot reference them in later queries.
+
+# Advantages of CTE:
+# 1. Let me shift a lot of data cleaning into SQL
+# 2. Break up queries into readable chunks and make them easier to follow what is going on in my code
+# 3. Let me take advantage of BigQuery's parallelization and I will get results faster
+
+
+####################
+# Small Pet Example
+####################
+
+# I want information of senior pets --- note that this query won't return anything
+WITH Seniors AS 
+  (
+  SELECT ID, Name
+  FROM `bigquery-public-data.pet_records.pets`
+  WHERE Years_old > 5
+  )
+  
+# I want additional information
+WITH Seniors AS 
+  (
+  SELECT ID, Name
+  FROM `bigquery-public-data.pet_records.pets`
+  WHERE Years_old > 5
+  )
+SELECT ID
+FROM Seniors
+
+
+###############################
+# Bitcoin Transactions Example
+###############################
+
+# import package with helper functions 
+import bq_helper
+
+# create a helper object for this dataset
+bitcoin_blockchain = bq_helper.BigQueryHelper(active_project="bigquery-public-data",
+                                              dataset_name="bitcoin_blockchain")
+
+query = """ WITH time AS 
+            (
+                SELECT TIMESTAMP_MILLIS(timestamp) AS trans_time,
+                    transaction_id
+                FROM `bigquery-public-data.bitcoin_blockchain.transactions`
+            )
+            SELECT COUNT(transaction_id) AS transactions,
+                EXTRACT(MONTH FROM trans_time) AS month,
+                EXTRACT(YEAR FROM trans_time) AS year
+            FROM time
+            GROUP BY year, month 
+            ORDER BY year, month
+        """
+
+# note that max_gb_scanned is set to 21, rather than 1
+transactions_per_month = bitcoin_blockchain.query_to_pandas_safe(query, max_gb_scanned=21)
+
+# import plotting library
+import matplotlib.pyplot as plt
+
+# plot monthly bitcoin transactions
+plt.plot(transactions_per_month.transactions) --- plot the values in the "transactions" column in query above
+plt.title("Monthly Bitcoin Transcations")
+
+
+
+
+
+
+
+
+
+
