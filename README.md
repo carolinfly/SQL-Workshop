@@ -7,6 +7,7 @@
   * [Day 2: Hacker News](https://www.kaggle.com/hacker-news/hacker-news?utm_medium=email&utm_source=mailchimp&utm_campaign=sql+scav+hunt) 
   * [Day 3: US Traffic Fatality Records](https://www.kaggle.com/usdot/nhtsa-traffic-fatalities?utm_medium=email&utm_source=mailchimp&utm_campaign=sql+scav+hunt) 
   * [Day 4: Bitcoin Blockchain](https://www.kaggle.com/bigquery/bitcoin-blockchain) 
+  * [Day 5: GitHub Repos](https://www.kaggle.com/github/github-repos?utm_medium=email&utm_source=mailchimp&utm_campaign=sql+scav+hunt) 
 
 ### My Kaggle Kernels
   * [Public Kernels](https://www.kaggle.com/carolinfly0218/kernels) 
