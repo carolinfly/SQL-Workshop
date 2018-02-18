@@ -1,4 +1,5 @@
-Dataset: Hacker News
+# My Kaggle Output: https://www.kaggle.com/carolinfly0218/sql-scavenger-hunt-day-2
+# Dataset: Hacker News
 
 # aggregate function - count(), sum(), avg(); an aggregate function takes in many values and returns one
 SELECT COUNT(ID)
