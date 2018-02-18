@@ -20,30 +20,51 @@ FROM `bigquery-public-data.pet_records.pets` as p
 INNER JOIN `bigquery-public-data.pet_records.owners` as o 
 ON p.ID = o.Pet_ID
 
+######################
+# GitHub Repo Example
+######################
 
+# Q: How many files are covered by each license
 
+import bq_helper
+github = bq_helper.BigQueryHelper(active_project="bigquery-public-data",
+                                              dataset_name="github_repos")
+                                              
+query = ("""
+        -- Select all the columns we want in our joined table
+        SELECT L.license, COUNT(sf.path) AS number_of_files
+        FROM `bigquery-public-data.github_repos.sample_files` as sf
+        -- Table to merge into sample_files
+        INNER JOIN `bigquery-public-data.github_repos.licenses` as L 
+            ON sf.repo_name = L.repo_name -- what columns should we join on?
+        GROUP BY L.license
+        ORDER BY number_of_files DESC
+        """)
 
+file_count_by_license = github.query_to_pandas_safe(query, max_gb_scanned=6)
 
+print(file_count_by_license)
 
+# Q: How many commits (recorded in the "sample_commits" table) have been made in repos written in the Python programming language? 
+# (I'm looking for the number of commits per repo for all the repos written in Python.
 
+# Note: I'll want to JOIN the sample_files and sample_commits questions to answer this.
+#       I can figure out which files are written in Python by filtering results from the "sample_files" table using 
+#       WHERE path LIKE '%.py'. This will return results where the "path" column ends in the text ".py", which is one way to identify which files have Python code.
 
+query = ("""
+        -- Select all the columns we want in our joined table
+        SELECT sf.repo_name, COUNT(sc.commit) AS number_of_commits
+        
+        FROM `bigquery-public-data.github_repos.sample_files` as sf
+        INNER JOIN `bigquery-public-data.github_repos.sample_commits` as sc 
+            ON sf.repo_name = sc.repo_name 
+            
+        WHERE sf.path LIKE "%.py"
+        GROUP BY sf.repo_name
+        ORDER BY number_of_commits DESC
+        """)
 
+commit_count_py = github.query_to_pandas_safe(query, max_gb_scanned=6)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+print(commit_count_py)
