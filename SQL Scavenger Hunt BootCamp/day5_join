@@ -1,0 +1,49 @@
+@ My Kaggle output:
+
+############
+# JOIN
+############
+
+# Look at information from multiple tables.
+
+##############
+# Pet Example
+##############
+
+## Inner join
+# 1. a ROW will only be put in the final output table if the value in the column you're using to combine them shows up 
+# in BOTH the tables you're joining
+# 2. an INNER JOIN will NOT give you an output that's larger than your input tables
+
+SELECT p.Name AS Pet_Name, o.Name as Owner_Name --- not select ID columns
+FROM `bigquery-public-data.pet_records.pets` as p
+INNER JOIN `bigquery-public-data.pet_records.owners` as o 
+ON p.ID = o.Pet_ID
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
