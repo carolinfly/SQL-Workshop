@@ -53,13 +53,10 @@ print(file_count_by_license)
 #       WHERE path LIKE '%.py'. This will return results where the "path" column ends in the text ".py", which is one way to identify which files have Python code.
 
 query = ("""
-        -- Select all the columns we want in our joined table
         SELECT sf.repo_name, COUNT(sc.commit) AS number_of_commits
-        
         FROM `bigquery-public-data.github_repos.sample_files` as sf
         INNER JOIN `bigquery-public-data.github_repos.sample_commits` as sc 
             ON sf.repo_name = sc.repo_name 
-            
         WHERE sf.path LIKE "%.py"
         GROUP BY sf.repo_name
         ORDER BY number_of_commits DESC
@@ -68,3 +65,4 @@ query = ("""
 commit_count_py = github.query_to_pandas_safe(query, max_gb_scanned=6)
 
 print(commit_count_py)
+
