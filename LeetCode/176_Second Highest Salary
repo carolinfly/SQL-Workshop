@@ -1,0 +1,83 @@
+# Q: Write a SQL query to get the second highest salary from the Employee table. 
+--- LIMIT: MySQL supports the LIMIT clause to select a limited number of records
+
+# Syntax
+SELECT column_name(s)
+FROM table_name
+WHERE condition
+LIMIT number; 
+
+# OFFSET specifies how many rows to skip within the result
+# FETCH specifies how many rows from that point forward to return in the result.
+
+IFNULL( expression, replacement ) 
+
+# create table
+CREATE TABLE tempemp
+( id int NOT NULL,
+  salary int
+);
+
+# input values
+INSERT INTO tempemp
+(id, salary)
+VALUES 
+(1,100);
+
+INSERT INTO tempemp
+(id, salary)
+VALUES 
+(2,200);
+
+INSERT INTO tempemp
+(id, salary)
+VALUES 
+(3,300);
+
+# check table
+select * from tempemp
+
+# Solution 1
+SELECT
+    IFNULL(
+      (SELECT DISTINCT Salary
+       FROM Employee
+       ORDER BY Salary DESC
+        LIMIT 1 OFFSET 1), ---- Change the number after ‘offset’ gives u n-th highest salary, keeping "LIMIT 1"
+    NULL) AS SecondHighestSalary
+    
+# Solution 2   
+SELECT MAX(SALARY) AS SecondHighestSalary
+FROM tempemp
+WHERE SALARY < (SELECT MAX(SALARY) FROM tempemp);
+
+# Solution 3 
+SELECT Max(e1.Salary) AS SecondHighestSalary 
+FROM tempemp e1, tempemp e2 
+WHERE e1.Salary < e2.Salary
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
