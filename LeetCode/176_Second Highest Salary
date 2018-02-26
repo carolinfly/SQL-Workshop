@@ -57,27 +57,3 @@ FROM tempemp e1, tempemp e2
 WHERE e1.Salary < e2.Salary
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
