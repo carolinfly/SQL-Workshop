@@ -12,7 +12,7 @@
 ### My Kaggle Kernels
   * [Public Kernels](https://www.kaggle.com/carolinfly0218/kernels) 
 
-## LeetCode
+### LeetCode
   * [LeetCode Problems](https://leetcode.com/problemset/database/) 
 
 ## SQL Workshop
