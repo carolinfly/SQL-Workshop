@@ -1,0 +1,57 @@
+# Q: Suppose that a website contains two tables, the Customers table and the Orders table. 
+#    Write a SQL query to find all customers who never order anything.
+
+# Create tables
+CREATE TABLE custs
+( id int NOT NULL,
+  name char(50) NOT NULL,
+  constraint customerspk PRIMARY KEY(id) 
+);
+
+CREATE TABLE ords
+( id int NOT NULL,
+  CustomerId int NOT NULL,
+  constraint orderspk PRIMARY KEY(id) 
+);
+
+# Populate values
+---- DELETE FROM custs
+---select * from custs
+
+INSERT INTO custs(id, name)
+VALUES(1, 'Joe');
+INSERT INTO custs(id, name)
+VALUES(2, 'Henry');
+INSERT INTO custs(id, name)
+VALUES(3, 'Sam');
+INSERT INTO custs(id, name)
+VALUES(4, 'Max');
+
+-- An alternativel way:
+INSERT ALL --- insert data all at once
+INTO customers(id, name)
+VALUES(1, Joe)
+INTO customers(id, name)
+VALUES(2, Henry)
+INTO customers(id, name)
+VALUES(3, Sam)
+INTO customers(id, name)
+VALUES(4, Max)
+;
+
+INSERT INTO ords(id, CustomerId )
+VALUES(1, 3);
+INSERT INTO ords(id, CustomerId )
+VALUES(2, 1);
+
+# left join the above two tables
+SELECT name as customers
+FROM custs c LEFT JOIN ords o
+ON c.id = o.customerid
+WHERE customerid IS NULL;
+
+
+
+
+
+
