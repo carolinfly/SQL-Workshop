@@ -1,0 +1,8 @@
+Q: Write a SQL query for a report that provides the following information for each person in the Person table, 
+regardless if there is an address for each of those people: FirstName, LastName, City, State
+
+# Solution:
+
+select p.FirstName, p.LastName, a.City, a.State
+from person p LEFT JOIN address a --- Considering there might not be an address information for every person, I should use outer join instead of the default inner join.
+on p.personid=a.personid
