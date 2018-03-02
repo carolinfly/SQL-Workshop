@@ -1,2 +1,2 @@
-# Replace
-SELECT CEIL(AVG(Salary)-AVG(REPLACE(Salary,'0',''))) FROM EMPLOYEES;
+# Replace; Ceil
+SELECT CEIL(AVG(Salary)-AVG(REPLACE(Salary,'0',''))) FROM EMPLOYEES; ---round up to the next integer.
