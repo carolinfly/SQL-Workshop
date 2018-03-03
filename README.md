@@ -13,10 +13,10 @@
   * [Public Kernels](https://www.kaggle.com/carolinfly0218/kernels) 
 
 ## LeetCode
-  * [LeetCode Problems](https://leetcode.com/problemset/database/) 
+ * [LeetCode Problems](https://leetcode.com/problemset/database/) 
   
 ## HackerRank
-  * [HackerRank Problems](https://www.hackerrank.com/domains/sql/aggregation)
+ * [HackerRank Problems](https://www.hackerrank.com/domains/sql/aggregation)
   
 ## SQL Workshop
  * [SQL Development Environment](https://apex.oracle.com/pls/apex/f?p=4550:1:115730555810709:) 
