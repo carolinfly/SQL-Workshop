@@ -1,2 +1,49 @@
 # Replace; Ceil
 SELECT CEIL(AVG(Salary)-AVG(REPLACE(Salary,'0',''))) FROM EMPLOYEES; ---round up to the next integer.
+
+Note: An aggregate may not appear in the WHERE clause unless it is in a subquery contained in a HAVING clause or a select list, 
+and the column being aggregated is an outer reference.
+
+
+# solution 1: MS SQL Server
+with maxtable as
+(select Employee_id, max(months*salary) as max
+from Employee
+where months*salary=(select max(months*salary) as max 
+from Employee) 
+group by employee_id)
+
+select max, count(employee_id)
+from maxtable
+group by max
+
+# solution 2:
+select salary*months as earnings, count(*) from employee
+group by earnings
+order by earnings desc limit 1;
+
+# solution 3:
+select salary*months as earnings, count(*) from employee
+group by 1 ---group by first column from SELECT 
+order by 1 desc limit 1 ---print the first line
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
