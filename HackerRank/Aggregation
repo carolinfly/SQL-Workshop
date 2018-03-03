@@ -65,7 +65,7 @@ where (select count(Lat_N) from station where Lat_N < S.LAT_N ) = (select count(
 
 # Solution 3
 /FIRST COUNT ROWS 499/ 
-select round(LAT_N,4) from station order by lat_n limit 1 offset 249;
+select round(LAT_N,4) from station order by lat_n limit 1 offset 249; ---FETCH specifies how many rows from that point forward to return in the result
 
 # Solution 4: applicable for both odd and even
 https://stackoverflow.com/questions/1291152/simple-way-to-calculate-median-with-mysql
