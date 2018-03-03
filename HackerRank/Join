@@ -1,0 +1,22 @@
+# solution 1
+select sum(ct.population)
+from city ct inner join country ty
+on ct.countrycode=ty.code
+where continent="Asia" --- can omit alias
+
+# solution 2
+SELECT SUM(CITY.POPULATION) 
+FROM CITY, COUNTRY
+WHERE CITY.COUNTRYCODE = COUNTRY.CODE AND COUNTRY.CONTINENT = 'Asia';
+
+# solution 3
+SELECT SUM(CITY.POPULATION) 
+FROM CITY 
+WHERE CITY.COUNTRYCODE IN (SELECT CODE FROM COUNTRY WHERE CONTINENT = 'ASIA') ---subquery method
+
+
+
+select ty.continent, floor(avg(ct.population)) ---round down
+from city ct join country ty
+on ct.countrycode=ty.code
+group by ty.continent;
