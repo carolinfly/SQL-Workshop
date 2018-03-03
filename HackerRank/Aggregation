@@ -58,14 +58,30 @@ group by a1.ID, a1.lat_n
 order by a1.lat_n desc) a3 
 WHERE Rank = (SELECT (COUNT(*)+1) DIV 2 FROM station); 
 
-# Solution 2:
+# Solution 2: only applicable for odd number of obs
 Select round(S.LAT_N,4) mediam 
 from station S 
-where (select count(Lat_N) from station where Lat_N < S.LAT_N ) = (select count(Lat_N) from station where Lat_N > S.LAT_N)
+where (select count(Lat_N) from station where Lat_N < S.LAT_N ) = (select count(Lat_N) from station where Lat_N > S.LAT_N) --- there are 249 records in both tables; if they are matched then he is selecting that S.LAT_N value
 
+# Solution 3
+/FIRST COUNT ROWS 499/ 
+select round(LAT_N,4) from station order by lat_n limit 1 offset 249;
 
+# Solution 4: applicable for both odd and even
+https://stackoverflow.com/questions/1291152/simple-way-to-calculate-median-with-mysql
 
-
+set @rownum = 0; --- initializes variable @rownum to 0, which is the same as "set @rownum = 0"
+select round(avg(t1.lat_n), 4) as median_val
+from (
+    select @rownum := @rownum + 1 as row_number, s.lat_n
+    from station s, (select @rownum := 0) r --- The "r" is an alias for the subquery 
+    order by s.lat_n
+) as t1,
+(
+    select count(*) as total_rows
+    from station
+) as t2
+where t1.row_number in (floor((total_rows + 1) / 2), floor((total_rows + 2) / 2));
 
 
 
