@@ -15,8 +15,46 @@ FROM CITY
 WHERE CITY.COUNTRYCODE IN (SELECT CODE FROM COUNTRY WHERE CONTINENT = 'ASIA') ---subquery method
 
 
-
 select ty.continent, floor(avg(ct.population)) ---round down
 from city ct join country ty
 on ct.countrycode=ty.code
 group by ty.continent;
+
+
+
+--- In MySql, CASE statement acts like a "if" condition, 
+    so if the expression after CASE statement matches the boolean value after WHEN clause, 
+    it executes the result after THEN clause; 
+    otherwise it will execute result after ELSE clause.
+
+# CASE conditional statement
+SELECT (CASE g.grade < 8 WHEN TRUE THEN null ELSE name END), grade, marks
+FROM students s INNER JOIN grades g 
+ON s.marks BETWEEN min_mark AND max_mark 
+ORDER BY g.grade DESC, s.name, s.marks；
+
+
+
+select hcs.submission_id, hcs.score as "actual_score", hcs.hacker_id, hcs.name, hcs.challenge_id, hcs.difficulty_level, D.score as "standard_score"
+from (select s.submission_id, s.score, hc.hacker_id, hc.name, hc.challenge_id, hc.difficulty_level
+from (select h.hacker_id, h.name, c.challenge_id, c.difficulty_level
+from Challenges c inner join hackers h
+on h.hacker_id=c.hacker_id) hc inner join Submissions s
+on hc.hacker_id=s.hacker_id and hc.challenge_id=s.challenge_id) hcs left join Difficulty D
+on hcs.difficulty_level=D.difficulty_level
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
