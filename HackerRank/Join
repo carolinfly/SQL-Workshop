@@ -1,3 +1,5 @@
+SELECT (CASE risk_score >= 0.5 WHEN TRUE THEN ">=0.5" ELSE risk_score >= 0.2 and risk_score<0.5 WHEN TRUE THEN "0.2_0.5" END)
+from risk_score_t
 # solution 1
 select sum(ct.population)
 from city ct inner join country ty
@@ -44,6 +46,8 @@ on hc.hacker_id=s.hacker_id and hc.challenge_id=s.challenge_id) hcs left join Di
 on hcs.difficulty_level=D.difficulty_level
 
 
+SELECT (CASE risk_score >= 0.5 WHEN TRUE THEN ">=0.5" ELSE risk_score >= 0.2 and risk_score<0.5 WHEN TRUE THEN "0.2_0.5" END)
+from risk_score_t
 
 
 
