@@ -1,0 +1,5 @@
+https://leetcode.com/problems/delete-duplicate-emails/description/
+
+create table t1 as select min(id) as id from Person group by Email;
+delete from Person where id not in (select id from t1);
+drop table t1;
